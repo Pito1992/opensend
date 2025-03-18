@@ -1,54 +1,79 @@
-# React + TypeScript + Vite
+# Installation Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequisites
 
-Currently, two official plugins are available:
+- Node.js (> 20)
+- npm or yarn or pnpm (prefer using pnpm)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+**Core Framework:**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript + Vite
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+**Styling & UI:**
+
+- Tailwind CSS
+- shadcn/ui
+- Radix UI
+
+**State & Form:**
+
+- Redux Toolkit
+- React Hook Form + Zod
+
+**Development:**
+
+- ESLint + Prettier
+- pnpm (package manager)
+
+## Project Structure (Vite + React + TypeScript)
+
+```
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── constants/
+│   ├── contexts/
+│   ├── elements/
+│   ├── hooks/
+│   ├── lib/
+│   ├── providers/
+│   ├── services/
+│   ├── stores/
+│   ├── styles/
+│   ├── utils/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── index.html
+├── components.json
+├── package.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.ts
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Install dependencies:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```

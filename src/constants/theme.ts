@@ -3,3 +3,5 @@ export enum Theme {
   LIGHT = 'light',
   SYSTEM = 'system',
 }
+
+export const THEME_STORAGE_KEY = 'ui-theme'

@@ -1,7 +1,5 @@
-export interface User {
-  id: string
-  email: string
-}
+import type { User, Tokens, Access, View } from '@/types/user'
+import { UserRole } from '@/constants/user'
 
 export interface LoginRequest {
   email: string
@@ -9,12 +7,25 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  token: string
+  message: string
   user: User
+  view: View
+  accesses: Access[]
+  tokens: Tokens
+}
+
+export type LogoutRequest = void
+export type LogoutResponse = void
+export type RefreshRequest = Tokens['refreshToken']
+
+export interface RefreshResponse {
+  message: string
+  user: User
+  tokens: Tokens
 }
 
 export interface AuthState {
-  token: string | null
-  user: User | null
+  tokens: Tokens | null
   isAuthenticated: boolean
+  userRole: UserRole | null
 }

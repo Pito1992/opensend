@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { Eye, EyeOff, Mail, LockKeyhole as Lock } from 'lucide-react'
@@ -16,6 +17,7 @@ import { useLoginMutation } from '@/services/auth.service'
 import { cn } from '@/utils/general'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { SerializedError } from '@reduxjs/toolkit'
+import { HOME_PATH } from '@/constants/routes'
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -27,7 +29,7 @@ type LoginFormData = z.infer<typeof loginSchema>
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [login, { isLoading, error }] = useLoginMutation()
-
+  const navigate = useNavigate()
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -38,9 +40,9 @@ export function LoginForm() {
   })
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log('🚀 ~ onSubmit ~ data:', data)
     try {
       await login(data).unwrap()
+      await navigate(HOME_PATH)
     } catch (error) {
       console.log('🚀 ~ onSubmit ~ error:', error)
     }

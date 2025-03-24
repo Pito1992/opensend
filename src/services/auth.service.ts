@@ -1,38 +1,47 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { LoginRequest, LoginResponse } from '@/types/auth'
-import { API_BASE_URL, AuthEndpoint } from '@/constants/api'
-import type { RootState } from '@/stores'
+import { createApi } from '@reduxjs/toolkit/query/react'
+import type {
+  LoginRequest,
+  LoginResponse,
+  RefreshRequest,
+  RefreshResponse,
+  LogoutRequest,
+  LogoutResponse,
+} from '@/types/auth'
+import { AuthEndpoint, HTTPMethod } from '@/constants/apis'
+import { apiConfig } from '@/lib/api-config'
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: API_BASE_URL,
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.token
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`)
-      }
-      return headers
-    },
-  }),
+  ...apiConfig,
   tagTypes: ['Auth'],
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginRequest>({
       query: (credentials) => ({
         url: AuthEndpoint.LOGIN,
-        method: 'POST',
+        method: HTTPMethod.POST,
         body: credentials,
       }),
       invalidatesTags: ['Auth'],
     }),
-    logout: builder.mutation<void, void>({
+    logout: builder.mutation<LogoutResponse, LogoutRequest>({
       query: () => ({
         url: AuthEndpoint.LOGOUT,
-        method: 'POST',
+        method: HTTPMethod.POST,
+      }),
+      invalidatesTags: ['Auth'],
+    }),
+    refresh: builder.mutation<RefreshResponse, RefreshRequest>({
+      query: (refreshToken) => ({
+        url: AuthEndpoint.REFRESH,
+        method: HTTPMethod.POST,
+        body: {
+          refreshToken,
+        },
       }),
       invalidatesTags: ['Auth'],
     }),
   }),
 })
 
-export const { useLoginMutation, useLogoutMutation } = authApi
+export const { useLoginMutation, useLogoutMutation, useRefreshMutation } =
+  authApi

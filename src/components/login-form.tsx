@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { Eye, EyeOff, Mail, LockKeyhole as Lock } from 'lucide-react'
+import { Eye, EyeClosed, Envelope, Lock } from '@phosphor-icons/react'
 import { Button } from '@/elements/button'
 import { Input } from '@/elements/input'
 import {
@@ -18,6 +18,8 @@ import { cn } from '@/utils/general'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { SerializedError } from '@reduxjs/toolkit'
 import { HOME_PATH } from '@/constants/routes'
+import { notify } from '@/utils/toast'
+import { ToastMessage } from '@/components/toast-message'
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -42,9 +44,11 @@ export function LoginForm() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       await login(data).unwrap()
+      notify.success(<ToastMessage message="Successfully logged in!" />)
       await navigate(HOME_PATH)
     } catch (error) {
-      console.log('🚀 ~ onSubmit ~ error:', error)
+      const errorData = (error as FetchBaseQueryError)?.data as SerializedError
+      notify.error(errorData?.message || 'An error occurred during login')
     }
   }
 
@@ -81,7 +85,10 @@ export function LoginForm() {
                     }
                   )}
                 >
-                  <Mail className="h-4 w-4 flex-shrink-0 text-neutral-400" />
+                  <Envelope
+                    className="h-4 w-4 flex-shrink-0 text-neutral-400"
+                    weight="duotone"
+                  />
                   <Input
                     placeholder="Email address"
                     type="email"
@@ -115,7 +122,10 @@ export function LoginForm() {
                     }
                   )}
                 >
-                  <Lock className="h-4 w-4 flex-shrink-0 text-neutral-400" />
+                  <Lock
+                    className="h-4 w-4 flex-shrink-0 text-neutral-400"
+                    weight="duotone"
+                  />
                   <Input
                     placeholder="Password"
                     type={showPassword ? 'text' : 'password'}
@@ -134,7 +144,7 @@ export function LoginForm() {
                     {showPassword ? (
                       <Eye className="h-4 w-4 text-neutral-400" />
                     ) : (
-                      <EyeOff className="h-4 w-4 text-neutral-400" />
+                      <EyeClosed className="h-4 w-4 text-neutral-400" />
                     )}
                   </button>
                 </div>

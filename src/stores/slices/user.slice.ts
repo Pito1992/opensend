@@ -23,6 +23,10 @@ export const userSlice = createSlice({
       }
     )
     builder.addMatcher(
+      authApi.endpoints.logout.matchFulfilled,
+      () => initialState
+    )
+    builder.addMatcher(
       userApi.endpoints.getUserProfile.matchFulfilled,
       (state, { payload }) => {
         state.user = payload.user

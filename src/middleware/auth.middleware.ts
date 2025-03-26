@@ -4,10 +4,13 @@ import {
   type UnknownAction,
   type ThunkDispatch,
   type AnyAction,
+  type SerializedError,
 } from '@reduxjs/toolkit'
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { logout, refreshTokens } from '@/stores/slices/auth.slice'
 import { authApi } from '@/services/auth.service'
 import type { AuthState } from '@/types/auth'
+import { notify } from '@/utils/toast'
 
 interface RejectedError {
   status: number
@@ -40,7 +43,9 @@ export const authMiddleware: Middleware<unknown, { auth: AuthState }> =
           throw new Error('No refresh token found')
         }
       } catch (error) {
-        console.log('🚀 ~ authMiddleware ~ error:', error)
+        const errorData = (error as FetchBaseQueryError)
+          ?.data as SerializedError
+        notify.error(errorData?.message || 'Error refreshing tokens')
         dispatch(logout())
       }
     }

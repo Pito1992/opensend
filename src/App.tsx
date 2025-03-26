@@ -3,6 +3,7 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { AppRoutes } from '@/app/routes'
 import { ThemeProvider } from '@/providers/theme.provider'
+import { ToastProvider } from '@/providers/toast.provider'
 import { Theme, THEME_STORAGE_KEY } from '@/constants/theme'
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
     <ThemeProvider defaultTheme={Theme.LIGHT} storageKey={THEME_STORAGE_KEY}>
       <ReduxProvider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <AppRoutes />
+          <ToastProvider>
+            <AppRoutes />
+          </ToastProvider>
         </PersistGate>
       </ReduxProvider>
     </ThemeProvider>

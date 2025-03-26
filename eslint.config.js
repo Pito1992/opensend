@@ -28,6 +28,7 @@ export default tseslint.config(
       '@typescript-eslint/no-empty-object-type': 'warn',
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-useless-empty-export': 'error',
+      '@typescript-eslint/no-duplicate-enum-values': 'off',
     },
   },
 )

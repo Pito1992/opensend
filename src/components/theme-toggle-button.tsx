@@ -1,4 +1,4 @@
-import { Moon, Sun } from 'lucide-react'
+import { Moon, Sun } from '@phosphor-icons/react'
 import React from 'react'
 import { Button } from '@/elements/button'
 import { useTheme } from '@/hooks/useTheme'
@@ -23,13 +23,13 @@ export function ThemeToggleButton({
       size="icon"
       onClick={toggleTheme}
       className={cn(
-        'cursor-pointer text-gray-900 hover:bg-transparent dark:text-gray-100 dark:hover:bg-transparent',
+        'relative cursor-pointer text-gray-900 hover:bg-transparent dark:text-gray-100 dark:hover:bg-transparent',
         className
       )}
       {...props}
     >
-      <Sun className="h-5 w-5 scale-100 rotate-0 transition-all duration-200 dark:scale-0 dark:-rotate-90" />
-      <Moon className="absolute h-5 w-5 scale-0 rotate-90 transition-all duration-200 dark:scale-100 dark:rotate-0" />
+      <Sun className="h-5 w-5 scale-100 rotate-0 transition-[rotate] duration-200 dark:scale-0 dark:-rotate-90" />
+      <Moon className="absolute h-5 w-5 scale-0 rotate-90 transition-[rotate] duration-200 dark:scale-100 dark:rotate-0" />
       <span className="sr-only">Toggle theme</span>
     </Button>
   )

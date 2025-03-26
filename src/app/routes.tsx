@@ -1,10 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router'
 import {
   LOGIN_PATH,
   DASHBOARD_PATH,
   ONBOARDING_PATH,
   ADMIN_PATH,
-  NOT_FOUND_PATH,
 } from '@/constants/routes'
 import { UserRole } from '@/constants/user'
 
@@ -38,10 +37,14 @@ export function AppRoutes() {
               path={ADMIN_PATH}
               element={
                 <ProtectedRoute allowedRoles={[UserRole.ADMIN]}>
-                  <AdminPage />
+                  <Outlet />
                 </ProtectedRoute>
               }
-            />
+            >
+              <Route index element={<AdminPage />} />
+              <Route path="new" element={<AdminPage />} />
+              <Route path="edit" element={<AdminPage />} />
+            </Route>
             <Route
               path={DASHBOARD_PATH}
               element={
@@ -60,7 +63,7 @@ export function AppRoutes() {
             />
           </Route>
         </Route>
-        <Route path={NOT_FOUND_PATH} element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

@@ -14,10 +14,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    logout: (state) => {
-      state.tokens = null
-      state.isAuthenticated = false
-    },
+    logout: () => initialState,
     refreshTokens: (state, action: PayloadAction<RefreshResponse>) => {
       state.tokens = {
         ...state.tokens,

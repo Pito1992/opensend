@@ -1,13 +1,9 @@
-import { useGetUserProfileQuery } from '@/services/user.service'
+import { Dashboard } from '@/components/dashboard'
 
 export function AdminPage() {
-  // Get user profile
-  const { data: userProfile } = useGetUserProfileQuery()
-  console.log('🚀 ~ AdminPage ~ userProfile:', userProfile)
-
   return (
-    <div>
-      <h1 className="text-primary">Admin Page</h1>
-    </div>
+    <>
+      <Dashboard title="Admin Page" />
+    </>
   )
 }

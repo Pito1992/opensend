@@ -1,8 +1,10 @@
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { type SerializedError } from '@reduxjs/toolkit'
 import { useNavigate } from 'react-router'
 import { useLazyGetStoreInfoByStoreIdQuery } from '@/services/store.service'
 import { UserRole } from '@/constants/user'
 import { ADMIN_PATH, DASHBOARD_PATH, ONBOARDING_PATH } from '@/constants/routes'
-
+import { notify } from '@/utils/toast'
 interface NavigateByRoleProps {
   viewType?: UserRole
   storeId?: string
@@ -33,8 +35,9 @@ export function useNavigateByRole() {
 
         navigate(DASHBOARD_PATH)
       } catch (error) {
-        console.error('Error fetching store info:', error)
-        // You might want to navigate to an error page or show a notification
+        const errorData = (error as FetchBaseQueryError)
+          ?.data as SerializedError
+        notify.error(errorData?.message || 'Error fetching store info')
       }
     }
   }

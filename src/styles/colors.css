@@ -12,8 +12,7 @@
   --gray-10: oklch(20% 0.003 262.33);
   --gray-11: oklch(15% 0.003 262.33);
   --gray-12: oklch(10% 0.003 262.33);
-  
-  
+
 
   /* Existing colors with some updates */
   --background: oklch(100% 0 0);
@@ -24,7 +23,7 @@
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(55.45% 0.0987 166.52);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: oklch(98% 0.003 262.33); 
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);

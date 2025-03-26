@@ -2,7 +2,8 @@ import * as z from 'zod'
 
 const createEnv = () => {
   const EnvSchema = z.object({
-    API_BASE_URL: z.string(),
+    API_BASE_URL: z.string().url().min(1),
+    API_PUBLIC_URL: z.string().min(1),
   })
 
   const envVars = Object.entries(import.meta.env).reduce<

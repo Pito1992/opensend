@@ -1,7 +1,9 @@
+import { Dashboard } from '@/components/dashboard'
+
 export function OnboardingPage() {
   return (
-    <div>
-      <h1 className="text-primary">Onboarding Page</h1>
-    </div>
+    <>
+      <Dashboard title="Onboarding Page" />
+    </>
   )
 }

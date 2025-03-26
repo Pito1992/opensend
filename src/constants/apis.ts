@@ -1,6 +1,7 @@
 import { env } from '@/config/env'
 
 export const API_BASE_URL = env.API_BASE_URL
+export const API_PUBLIC_URL = env.API_PUBLIC_URL
 
 export enum AuthEndpoint {
   LOGIN = '/auth/login',
@@ -14,6 +15,10 @@ export enum StoreEndpoint {
 
 export enum UserEndpoint {
   GET_USER_PROFILE = '/self/profile',
+}
+
+export enum DashboardEndpoint {
+  GET_WIDGETS = '/dashboard',
 }
 
 export enum HTTPMethod {

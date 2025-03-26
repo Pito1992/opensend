@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import { useSelector } from 'react-redux'
 import { LOGIN_PATH } from '@/constants/routes'
 import { useNavigateByRole } from '@/hooks/useNavigateByRole'
-import { type RootState } from '@/stores'
+import { useAuth } from '@/hooks/useAuth'
+import { useUserProfile } from '@/hooks/useUserProfile'
 
 export function HomePage() {
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth)
-  const { view, accesses } = useSelector((state: RootState) => state.user)
+  const { isAuthenticated } = useAuth()
+  const { view, accesses } = useUserProfile()
   const navigate = useNavigate()
   const { handleNavigation } = useNavigateByRole()
 

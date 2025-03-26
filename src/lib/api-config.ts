@@ -1,10 +1,10 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { API_BASE_URL } from '@/constants/apis'
+import { env } from '@/config/env'
 import type { RootState } from '@/stores'
 
 export const apiConfig = {
   baseQuery: fetchBaseQuery({
-    baseUrl: API_BASE_URL,
+    baseUrl: env.API_BASE_URL,
     prepareHeaders: (headers, { getState }) => {
       const state = getState() as RootState
       const { accessToken, clientToken } = state.auth?.tokens || {}
@@ -17,5 +17,11 @@ export const apiConfig = {
       }
       return headers
     },
+  }),
+}
+
+export const publicApiConfig = {
+  baseQuery: fetchBaseQuery({
+    baseUrl: env.API_PUBLIC_URL,
   }),
 }

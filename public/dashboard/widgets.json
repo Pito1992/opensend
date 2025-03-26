@@ -1,0 +1,54 @@
+{
+  "widgets": [
+    {
+      "id": "identities-widget",
+      "title": "Identities Provided",
+      "description": "Number of provided identities during the selected time period",
+      "type": "IDENTITIES",
+      "value": "250",
+      "x": 0,
+      "y": 0,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "iterable-widget",
+      "title": "Opened Message",
+      "description": "Number of provided identities who opened emails during the selected time period",
+      "type": "ITERABLE",
+      "value": "0.85",
+      "x": 2,
+      "y": 0,
+      "w": 2,
+      "h": 2
+    },
+    {
+      "id": "yotpo-widget",
+      "title": "Yotpo Metric",
+      "description": "Number of provided identities who clicked on emails for the selected time period",
+      "type": "YOTPO",
+      "value": "1200",
+      "x": 4,
+      "y": 0,
+      "w": 2,
+      "h": 2
+    }
+  ],
+  "layouts": {
+    "lg": [
+      { "i": "identities-widget", "x": 0, "y": 0, "w": 2, "h": 2 },
+      { "i": "iterable-widget", "x": 2, "y": 0, "w": 2, "h": 2 },
+      { "i": "yotpo-widget", "x": 4, "y": 0, "w": 2, "h": 2 }
+    ],
+    "md": [
+      { "i": "identities-widget", "x": 0, "y": 0, "w": 2, "h": 2 },
+      { "i": "iterable-widget", "x": 2, "y": 0, "w": 2, "h": 2 },
+      { "i": "yotpo-widget", "x": 0, "y": 2, "w": 2, "h": 2 }
+    ],
+    "sm": [
+      { "i": "identities-widget", "x": 0, "y": 0, "w": 2, "h": 2 },
+      { "i": "iterable-widget", "x": 0, "y": 2, "w": 2, "h": 2 },
+      { "i": "yotpo-widget", "x": 0, "y": 4, "w": 2, "h": 2 }
+    ]
+  }
+}

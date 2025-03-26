@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft } from '@phosphor-icons/react'
 import { Button } from '@/elements/button'
 import { HOME_PATH } from '@/constants/routes'
 
@@ -17,7 +17,7 @@ export function NotFound() {
         <div className="flex justify-center gap-4">
           <Button variant="default" asChild className="flex items-center gap-2">
             <Link to={HOME_PATH}>
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="size-4" />
               Back to Home
             </Link>
           </Button>

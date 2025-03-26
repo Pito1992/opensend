@@ -58,7 +58,24 @@
 
 ## Project Setup
 
-1. Install dependencies:
+1. Create a `.env` file in the root directory:
+   - Copy `.env.example` file to `.env`
+   - Update the environment variables according to your setup
+
+> ⚠️ **Environment Variables**
+>
+> The project requires the following environment variables:
+>
+> - `VITE_APP_API_PUBLIC_URL`: Your public API URL
+> - `VITE_APP_API_BASE_URL`: Your base API URL
+>
+> Make sure to:
+>
+> - Never commit `.env` file to version control
+> - Use different values for development and production environments
+> - Create `.env.production` for production builds
+
+2. Install dependencies:
 
 ```bash
 npm install
